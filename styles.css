@@ -1,0 +1,128 @@
+:root {
+  --background: var(--gradient-18);
+  --content-font: 'Abel', sans-serif;
+}
+
+body {
+  font-family: var(--content-font);
+  background-image: var(--background);
+  box-sizing: border-box;
+  padding: 3ch;
+  scroll-behavior: smooth;
+}
+
+
+.parent {
+  display: grid;
+  grid-template-columns: 1fr min(80ch, calc(100% - 16px)) 1fr;
+  grid-column-gap: 8px;
+  place-items: center;
+}
+
+.parent > * {
+  grid-column: 2;
+}
+
+iframe {
+  margin-top: 2rem;
+}
+
+li::marker {
+  content: "🐾";
+}
+
+:where(h1, h4) {
+  margin-block: var(--size-4);
+}
+
+:where(li) {
+  font-size: var(--font-size-4);
+  color: var(--gray-9);
+}
+
+:where(h3) {
+  font-size: var(--font-size-6);
+  border-block-start: 2px solid currentColor;
+  color: var(--pink-5);
+}
+
+:where(h4) {
+  font-size: var(--font-size-5);
+  color: var(--lime-5);
+  border-block-start: 1px solid currentColor;
+}
+
+:where(p, ul) {
+  margin-block-end: var(--size-6);
+}
+
+:where(p, h1, h3, h4) {
+  max-inline-size: 100%;
+  text-align: center;
+}
+
+:where(a) {
+  color: var(--yellow-6);
+}
+
+:where(a):visited {
+  color: var(--green-7);
+}
+
+small {
+  margin-block-end: var(--size-4);
+}
+
+.parent > section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+/* Create four equal columns that sits next to each other */
+article {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+article img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.animate {
+  animation: 0.3s ease-in 0.3s fade-in-no-boring;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1000px) {
+  article {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  article {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+@media(prefers-color-scheme: light) {
+  :where(p, ul) {
+    color: var(--gray-0);
+  }
+}
+
+@keyframes fade-in-no-boring {
+  0% { opacity: 0; filter: brightness(1) blur(20px) }
+  10% { opacity: 1; filter: brightness(2) blur(10px) }
+  100% { opacity: 1; filter: brightness(1) blur(0) }
+}
