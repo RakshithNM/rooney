@@ -1,5 +1,5 @@
 :root {
-  --background: var(--gradient-18);
+  --background: var(--gradient-26);
   --content-font: 'Abel', sans-serif;
 }
 
@@ -17,6 +17,7 @@ body {
   grid-template-columns: 1fr min(80ch, calc(100% - 16px)) 1fr;
   grid-column-gap: 8px;
   place-items: center;
+  filter: none;
 }
 
 .parent > * {
@@ -25,6 +26,14 @@ body {
 
 iframe {
   margin-top: 2rem;
+}
+
+#dp {
+  border-radius: var(--radius-2);
+}
+
+.name {
+  color: var(--indigo-8);
 }
 
 li::marker {
@@ -37,19 +46,31 @@ li::marker {
 
 :where(li) {
   font-size: var(--font-size-4);
-  color: var(--gray-9);
+  color: var(--gray-2);
 }
 
 :where(h3) {
   font-size: var(--font-size-6);
-  border-block-start: 2px solid currentColor;
+  border-block-start: 2px dotted var(--lime-3);
+  border-block-end: 2px dotted var(--lime-5);
+  border-inline-start: 2px dotted var(--lime-7);
+  border-inline-end: 2px dotted var(--lime-4);
+  border-radius: var(--radius-blob-2);
+  padding: 1.5rem;
+  margin-block-end: 1rem;
   color: var(--pink-5);
 }
 
 :where(h4) {
   font-size: var(--font-size-5);
   color: var(--lime-5);
-  border-block-start: 1px solid currentColor;
+  border-block-start: 2px dashed var(--indigo-9);
+  border-block-end: 2px dashed var(--indigo-5);
+  border-inline-start: 2px dashed var(--indigo-7);
+  border-inline-end: 2px dashed var(--indigo-4);
+  padding: 1.5rem;
+  margin-block-end: 1rem;
+  border-radius: var(--radius-blob-5);
 }
 
 :where(p, ul) {
@@ -62,15 +83,17 @@ li::marker {
 }
 
 :where(a) {
-  color: var(--yellow-6);
+  color: var(--indigo-6);
 }
 
 :where(a):visited {
   color: var(--green-7);
 }
 
-small {
-  margin-block-end: var(--size-4);
+:where(small) {
+  margin-block-end: 0;
+  max-inline-size: 100%;
+  color: var(--orange-9);
 }
 
 .parent > section {
@@ -92,6 +115,8 @@ article {
 article img {
   margin-top: 8px;
   vertical-align: middle;
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-2);
   width: 100%;
 }
 
