@@ -29,3 +29,7 @@ if(images) {
     observer.observe(image);
   }
 }
+
+if(CSS.paintWorklet) {
+  CSS.paintWorklet.addModule('./paint.js');
+}

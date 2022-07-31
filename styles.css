@@ -1,6 +1,16 @@
-:root {
+:root,
+:after,
+:before {
   --background: var(--gradient-26);
   --content-font: 'Abel', sans-serif;
+  --radi-2: var(--radius-2);
+  --borderWidth: var(--radi-2);
+}
+
+@property --f-o{
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
 }
 
 body {
@@ -28,10 +38,6 @@ iframe {
   margin-top: 2rem;
 }
 
-#dp {
-  border-radius: var(--radius-2);
-}
-
 .name {
   color: var(--indigo-8);
 }
@@ -40,8 +46,12 @@ li::marker {
   content: "🐾";
 }
 
-:where(h1, h4) {
-  margin-block: var(--size-4);
+:where(h1) {
+  margin-block-end: 5rem;
+}
+ 
+:where(h4) {
+  margin-block: 5rem;
 }
 
 :where(li) {
@@ -58,12 +68,12 @@ li::marker {
   border-radius: var(--radius-blob-2);
   padding: 1.5rem;
   margin-block-end: 1rem;
-  color: var(--pink-5);
+  color: orangered;
 }
 
 :where(h4) {
   font-size: var(--font-size-5);
-  color: var(--lime-5);
+  color: var(--yellow-2);
   border-block-start: 2px dashed var(--indigo-9);
   border-block-end: 2px dashed var(--indigo-5);
   border-inline-start: 2px dashed var(--indigo-7);
@@ -75,6 +85,7 @@ li::marker {
 
 :where(p, ul) {
   margin-block-end: var(--size-6);
+  padding-inline-start: 0;
 }
 
 :where(p, h1, h3, h4) {
@@ -94,6 +105,7 @@ li::marker {
   margin-block-end: 0;
   max-inline-size: 100%;
   color: var(--orange-9);
+  text-align: center;
 }
 
 .parent > section {
@@ -120,10 +132,6 @@ article img {
   width: 100%;
 }
 
-.animate {
-  animation: 0.3s ease-in 0.3s fade-in-no-boring;
-}
-
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 1000px) {
   article {
@@ -146,8 +154,67 @@ article img {
   }
 }
 
-@keyframes fade-in-no-boring {
-  0% { opacity: 0; filter: brightness(1) blur(20px) }
-  10% { opacity: 1; filter: brightness(2) blur(10px) }
-  100% { opacity: 1; filter: brightness(1) blur(0) }
+.box{
+	background-color: #DDFFF7;
+	position: relative;
+}
+
+.box::after,
+.box::before {
+	mix-blend-mode: multiply;
+	filter: none;
+	content: '';
+	width: calc(100% + (30px * 2));
+	height: calc(100% + (30px * 2));
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	animation: border 10s ease-in-out infinite;
+	transform: translateX(-30px) translateY(-30px);
+}
+
+.box > #dp {
+  position: relative;
+  z-index: 2;
+
+  -webkit-mask: paint(fragmentation);
+  --f-o: 1;
+  transition: --f-o 1s;
+}
+
+.box > #sdp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.box > #dp:hover {
+  --f-o: 0;
+}
+
+@keyframes border {
+  0%, 
+  100% {
+    -webkit-clip-path: polygon(0 0, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
+            clip-path: polygon(0 0, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
+  }
+  50% {
+    -webkit-clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
+            clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
+  }
+}
+
+.box::after{
+	animation-delay: -5s;
+	background-color: var(--lime-6);
+	background-image: var(--gradient-4);
+	clip-path: polygon(0 0, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
+}
+
+.box::before {
+	background-color: orangered;
+	background-image: var(--gradient-5);
+	clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
 }
