@@ -3,8 +3,6 @@
 :before {
   --background: var(--gradient-26);
   --content-font: 'Abel', sans-serif;
-  --radi-2: var(--radius-2);
-  --borderWidth: var(--radi-2);
 }
 
 @property --f-o{
@@ -51,12 +49,12 @@ li::marker {
 }
  
 :where(h4) {
-  margin-block: 5rem;
+  margin-block: 1rem;
 }
 
 :where(li) {
   font-size: var(--font-size-4);
-  color: var(--gray-2);
+  color: var(--indigo-9);
 }
 
 :where(h3) {
@@ -69,6 +67,10 @@ li::marker {
   padding: 1.5rem;
   margin-block-end: 1rem;
   color: orangered;
+}
+
+.about {
+  margin-block-start: 5rem;
 }
 
 :where(h4) {
@@ -85,7 +87,7 @@ li::marker {
 
 :where(p, ul) {
   margin-block-end: var(--size-6);
-  padding-inline-start: 0;
+  padding-inline-start: 8px;
 }
 
 :where(p, h1, h3, h4) {
@@ -150,7 +152,7 @@ article img {
 
 @media(prefers-color-scheme: light) {
   :where(p, ul) {
-    color: var(--gray-0);
+    color: var(--grape-9);
   }
 }
 
